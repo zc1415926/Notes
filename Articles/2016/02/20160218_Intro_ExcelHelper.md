@@ -1,4 +1,4 @@
-## ExcelHelper工具说明
+# ExcelHelper工具说明
 
 ExcelHelper是一个基于Node.js命令行工具，专注于解决用户Excel（xls、xlsx）格式基础数据，在不同信息管理系统之间批量导入导出时进行的有规律地行列增删改操作。
 
@@ -6,25 +6,7 @@ ExcelHelper是一个基于Node.js命令行工具，专注于解决用户Excel（
 
 ExcelHelper是一个开放源代码程序，想要了解详细信息，请前往其[Github页面][github-repo-url]。
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
-
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
-
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
-
-### 背景
+## 背景
 在学校的工作中，常常要用到多个学生信息管理系统，有时还会遇见新的系统想要尝尝鲜的情况。要将数据从一个系统导入到另一个系统，常用的方法是使用Excel文件作为通用数据交换文件。但是，这些信息管理系统的导出的数据基本上是不能马上导入另一个系统的，要使用各式各样的方法对这样Excel文件进行加工。常见的Excel文件加工方法有：
 
 - 全手动法
@@ -39,95 +21,98 @@ This text you see here is *actually* written in Markdown! To get a feel for Mark
 
 Nodej.js库非常丰富，NPM包管理十分方便，运行效率高，使用Javascript减少了语言障碍。在Node.js的基础上，ExcelHelper工具应运而生。
 
-### 设计理念
+## 设计理念
 ExcelHelper的设计，遵循了Unix编程艺术中的“[模块原则][Module-principle]”，大大降低了程序的复杂度。使程序代码清晰明了，易于维护，同时提高的程序的可靠性。
 
 前文中也提到，工作中会遇到很多表格转换及根据表格给文件重命名的工作。这些工作简单有规律，同时又需要大量的重复运算，这是最适合计算机程序应用的情境之一。为了持久地为工作提供便捷，同时减少不必要的劳动浪费，程序的可复用性也极其重要。在程序的编写过程中，将可以重用的部分和需要根据不同的表格而更改的部分区分开，切换不同的任务时，只需切换相应的分区代码即可。同时使用版本管理工具git方便版本之间的切换。
 
 简明易用（人性化的参数，简明的说明文档）
 
-### 设计说明
-### 使用方法
-### 如何复用
+## 设计说明
 
-Dillinger uses a number of open source projects to work properly:
+###文件列表及说明
+###子命令设计说明
+类库、函数
 
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
-* [Marked] - a super fast port of Markdown to JavaScript
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
-* [keymaster.js] - awesome keyboard handler lib by [@thomasfuchs]
-* [jQuery] - duh
+## 使用说明
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
+### 查看帮助
+如果你不知道Excelhelper如何使用，或其中有哪些子命令，可以使用：
 
-### Installation
-
-You need Gulp installed globally:
-
-```sh
-$ npm i -g gulp
+```
+node excelhelper -h
 ```
 
-```sh
-$ git clone [git-repo-url] dillinger
-$ cd dillinger
-$ npm i -d
-$ gulp build --prod
-$ NODE_ENV=production node app
+你可以得到如下的帮助信息：
+
+<pre>
+D:\Web\WebstormProjects\covert-xj-to-xkw> node excelhelper -h
+Commands:
+  transform  Building an Excel file from a source Excel file.
+  rename     rename files referencing the excel file
+  
+Options:
+  -h, --help  Show help                                                [boolean]
+
+Examples:
+  To get ditail by using: excelhelper [Commands] -h
+
+Made by zc1415926,
+Find more at https://github.com/zc1415926/covert-xj-to-xkw
+</pre>
+
+可以看到ExcelHelper有两个git风格子命令，下面分别介绍这两个子命令。
+
+### transform子命令说明
+
+transform子命令的帮助信息可以由以下命令获取：
+
+```
+node excelhelper transform -h
 ```
 
-### Plugins
+获取到的帮助信息如下：
+<pre>
+Options:
+  -s, --source  Full path of the source Excel file.          [string] [required]
+  -d, --dest    Directory in which your output file put.                [string]
+  -h, --help    Show help                                              [boolean]
+</pre>
 
-Dillinger is currently extended with the following plugins
+在使用transform子命令时，为参数-s传入需要转换的Excel文件的路径（必选），为参数-d传入转换完成的目标文件所要存储的目录（可选），如果-d参数为空，程序则会自动在源文件所有目录下新建一个*transformed*目录，将转换完成的文件存入其中，或在已有的*transformed*目录中存储目标文件。
 
-* Dropbox
-* Github
-* Google Drive
-* OneDrive
+### rename子命令说明
+transform子命令的帮助信息可以由以下命令获取：
 
-Readmes, how to use them in your own application can be found here:
-
-* [plugins/dropbox/README.md] [PlDb]
-* [plugins/github/README.md] [PlGh]
-* [plugins/googledrive/README.md] [PlGd]
-* [plugins/onedrive/README.md] [PlOd]
-
-### Development
-
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantanously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-```sh
-$ node app
+```
+node excelhelper rename -h
 ```
 
-Second Tab:
-```sh
-$ gulp watch
-```
+获取到的帮助信息如下：
+<pre>
+Usage: excelhelper rename -e [ExcelFilePath] -p [PhotoDirctory]
 
-(optional) Third:
-```sh
-$ karma start
-```
+Options:
+  -e, --excel  Full path of the reference Excel file.        [string] [required]
+  -d, --dir    Directory path in which your file contain.    [string] [required]
+  -w, --width  How width do you want your photos to resize to.(Ratio keeping) 
+                                                                        [string]
+  -h, --help   Show help                                               [boolean]
 
-### Docker, N|Solid and NGINX
+Examples:
+  params -e X:\path\myExcel.xls -p X:\dirctory\photos
 
-More details coming soon.
+Made by zc1415926,
+Find more at https://github.com/zc1415926/covert-xj-to-xkw
+</pre>
 
-#### docker-compose.yml
+使用rename子命令时，为参数-e传入存储批量重命名所需的“原文件名”、“目标文件名”的Excel参考文件路径（必选），为参数-d传入需要批量重命名的文件所在目录（必选），如果你正在重命名的文件是jpg或png格式的文件，其扩展名包含于JPG、jpg、jpeg、png、PNG几种之中，则可以使用-w参数在给文件重命名的同时，对图片进行缩放操作，传入一个要缩放至的宽度值，程序就会按此值保持长宽比地缩放图片（可选）。
 
-Change the path for the nginx conf mounting path to your full path, not mine!
+**如何指定Excel参考文件中“原文件名”及“目标文件名”对应列的列号呢？**由于这一个文件批量重命名任务中，Excel参考文件中“原文件名”及“目标文件名”对应列的列号基本不变。所以，程序在file-renamer.js文件中使用*COL_NUM_LOOKING_FOR*和*COL_NUM_RENAME_TO*两个从0开始的，表示列号的变量来分别存储对应“原文件名”及“目标文件名”对应列的列号。这两个变量会在“如何复用”一节再次提到。
+
+
+## 如何复用
+修改参数值、修改代码
 
 ### Todos
 
@@ -142,31 +127,11 @@ License
 MIT
 
 
-**Free Software, Hell Yeah!**
+[github-repo-url]: <https://github.com/zc1415926/covert-xj-to-xkw>
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-
-   [github-repo-url]: <https://github.com/zc1415926/covert-xj-to-xkw>
-   [Module-principle]: <http://www.cnblogs.com/chgaowei/archive/2011/07/26/2117644.html>
-   
-   [john gruber]: <http://daringfireball.net>
-   [@thomasfuchs]: <http://twitter.com/thomasfuchs>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [marked]: <https://github.com/chjj/marked>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [keymaster.js]: <https://github.com/madrobby/keymaster>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]:  <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
+[Module-principle]: <http://www.cnblogs.com/chgaowei/archive/2011/07/26/2117644.html>
 
 
+THE END
+
+THANK YOU
