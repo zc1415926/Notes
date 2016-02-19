@@ -29,10 +29,29 @@ ExcelHelper的设计，遵循了Unix编程艺术中的“[模块原则][Module-p
 简明易用（人性化的参数，简明的说明文档）
 
 ## 设计说明
+### 命令行程序
+使用命令行程序这一种程序形式，不仅简化了程序结构，增加程序的稳定性，同时也能使程序更加专注于业务逻辑，减少GUI对用户的干扰。
+### 子命令设计理念
+本程序使用了git风格的子命令，将不同的业务逻辑分享开，使得程序结构清晰。每个子命令功能单一，功能专注，效率高。同时，各个子命令又使用同一个主命令作为入口，使得整个程序分而不散，保持了程序的统一性、完整性。
+### 文件列表及说明
+ExcelHelper的项目文件列表如下：
+<pre>
+root
+|--commands
+	|--excel-transformer.js
+	|--file-renamer.js
+	|--image-resizer.js
+|--node_modules
+|--.gitignore
+|--excelhelper.js
+|--package.json
+|--readme.md
+</pre>
 
-###文件列表及说明
-###子命令设计说明
-类库、函数
+commands目录中有三个文件，excel-transformer.js为transform子命令处理Excel文件转换的核心逻辑代码；file-renamer.js是rename子命令中文件批量重命名功能的代码；image-resizer.js文件是在rename子命令执行时，重命名的文件是jpg或png的图片文件时，对图片进行缩放的代码。
+node_modules是一个文件夹，存放了整个项目所引用的包。想要了解项目引用了哪些包，及项目的其它信息，可以查看package.json文件。.gitignore是版本管理系统git所使用的文件，它标记了哪些文件是需要在git中忽略的文件。excelhelper.js是程序入口文件，负责调度子命令，输出帮助信息，同时对使用的子命令有其引入的参数进行检查和处理的逻辑。readme.md是项目文档，使用markdown格式书写。
+### 子命令详细设计说明
+transform子命令引入了shelljs、node-xlsx、fs、progress包；rename子命令引入了shelljs、node-xlsx、progress包，;rename子命令的图片重命名部分还引入了images、match-extension两个包。
 
 ## 使用说明
 
@@ -114,12 +133,8 @@ Find more at https://github.com/zc1415926/covert-xj-to-xkw
 ## 如何复用
 修改参数值、修改代码
 
-### Todos
-
- - Write Tests
- - Rethink Github Save
- - Add Code Comments
- - Add Night Mode
+## 展望
+ExcelHelper还有很多的不足之处，亟待改进，还没有实现的功能也有很多。当同时有较多的Excel文件需要转换或是有组文件需要批量重命名时，可以将参数列表提前写入一个json文件中，由程序执行时读取，执行一次就可以完成所有的任务，不必每次修改原来执行命令。
 
 License
 ----
