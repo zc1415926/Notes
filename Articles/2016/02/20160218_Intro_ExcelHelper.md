@@ -26,7 +26,7 @@ ExcelHelper的设计，遵循了Unix编程艺术中的“[模块原则][Module-p
 
 前文中也提到，工作中会遇到很多表格转换及根据表格给文件重命名的工作。这些工作简单有规律，同时又需要大量的重复运算，这是最适合计算机程序应用的情境之一。为了持久地为工作提供便捷，同时减少不必要的劳动浪费，程序的可复用性也极其重要。在程序的编写过程中，将可以重用的部分和需要根据不同的表格而更改的部分区分开，切换不同的任务时，只需切换相应的分区代码即可。同时使用版本管理工具git方便版本之间的切换。
 
-简明易用（人性化的参数，简明的说明文档）
+一目了然的参数设计，简洁清晰的在线帮助，配合参数审核错误信息提示功能，使用户的使用更加方便，即使命令输入错误，也不会让用户感到不知所措。
 
 ## 设计说明
 ### 命令行程序
@@ -142,11 +142,6 @@ License
 MIT
 
 
-[github-repo-url]: <https://github.com/zc1415926/covert-xj-to-xkw>
+[github-repo-url]: <https://github.com/zc1415926/covert-xj-to-xkw> "Github页面"
 
-[Module-principle]: <http://www.cnblogs.com/chgaowei/archive/2011/07/26/2117644.html>
-
-
-THE END
-
-THANK YOU
+[Module-principle]: <http://www.cnblogs.com/chgaowei/archive/2011/07/26/2117644.html> "模块原则"
