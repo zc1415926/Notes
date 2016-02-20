@@ -136,12 +136,14 @@ Find more at https://github.com/zc1415926/covert-xj-to-xkw
 ## 展望
 ExcelHelper还有很多的不足之处，亟待改进，还没有实现的功能也有很多。当同时有较多的Excel文件需要转换或是有组文件需要批量重命名时，可以将参数列表提前写入一个json文件中，由程序执行时读取，执行一次就可以完成所有的任务，不必每次修改原来执行命令。
 
-License
-----
+## 许可证
 
-MIT
+ExcelHelper是一款开源软件，使用了[MIT许可证][MIT-license]。
+
 
 
 [github-repo-url]: <https://github.com/zc1415926/covert-xj-to-xkw> "Github页面"
 
 [Module-principle]: <http://www.cnblogs.com/chgaowei/archive/2011/07/26/2117644.html> "模块原则"
+
+[MIT-license]: <https://github.com/zc1415926/ExcelHelper/blob/master/LICENSE> "MIT许可证"
