@@ -131,7 +131,7 @@ Find more at https://github.com/zc1415926/covert-xj-to-xkw
 
 
 ## 如何复用
-修改参数值、修改代码
+关于Excel文件的处理，可以修改excel-transformer.js中的原表格读取代码和生表格生成代码。关于文件重命名的功能，通常请况下，你可以只改变file-renamer.js文件中使用*COL_NUM_LOOKING_FOR*和*COL_NUM_RENAME_TO*两个变量的值达到复用代码的目的，如果你想修改重命名图片文件时缩放图片的代码，可以在image-resizer.js文件中进行。
 
 ## 展望
 ExcelHelper还有很多的不足之处，亟待改进，还没有实现的功能也有很多。当同时有较多的Excel文件需要转换或是有组文件需要批量重命名时，可以将参数列表提前写入一个json文件中，由程序执行时读取，执行一次就可以完成所有的任务，不必每次修改原来执行命令。
